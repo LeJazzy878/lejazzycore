@@ -1,0 +1,10 @@
+name: LeJazzy
+author: LeJazzy
+version: 1.0
+main: lejazzy.skycore.Core
+commands:
+  test:
+    description: test
+    usage: /test
+    aliases: [gui,help]
+

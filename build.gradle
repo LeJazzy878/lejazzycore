@@ -1,0 +1,53 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+group = 'lejazzy.skycore'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://repo.papermc.io/repository/maven-public/' }
+    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/public/' }
+    maven { url = 'https://repo.aikar.co/content/groups/aikar/' }
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    compileOnly 'com.destroystokyo.paper:paper-api:1.9.4-R0.1-SNAPSHOT'
+
+    implementation 'co.aikar:acf-paper:0.5.1-SNAPSHOT'
+    implementation 'co.aikar:acf-core:0.5.1-SNAPSHOT'
+    implementation 'co.aikar:acf-bungee:0.5.1-SNAPSHOT'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+tasks.named('jar') {
+    archiveFileName = 'SkyRTP-without-dependencies.jar'
+    manifest {
+        attributes 'Main-Class': 'fr.lejazzy.core.api.CoreAPI'
+    }
+}
+
+tasks.named('shadowJar') {
+    archiveFileName = 'LeJazzy.jar'
+    manifest {
+        attributes 'Main-Class': 'fr.lejazzy.core.api.CoreAPI'
+    }
+}
+
+tasks.named('build') {
+    dependsOn tasks.named('shadowJar')
+}
