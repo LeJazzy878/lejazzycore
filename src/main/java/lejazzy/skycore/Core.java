@@ -16,6 +16,17 @@ public class Core extends JavaPlugin {
 
         PaperCommandManager manager = new PaperCommandManager(this);
  
+
+
+         * Registers Commands
+         */
+
+        getLogger().info("Registering commands...");
+
+        manager.registerCommand(new TESTCommand());
+
+        getLogger().info("Commands registering succefully");
+
         System.out.println(ChatColor.GREEN + "Le plugin a bien ete chargee");
 
     }
