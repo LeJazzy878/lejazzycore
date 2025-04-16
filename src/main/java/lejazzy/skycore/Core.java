@@ -12,6 +12,10 @@ public class Core extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
+
+        PaperCommandManager manager = new PaperCommandManager(this);
+ 
         System.out.println(ChatColor.GREEN + "Le plugin a bien ete chargee");
 
     }
